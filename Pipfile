@@ -15,6 +15,7 @@ drf-spectacular = "*"
 coverage = "*"
 django-allauth = "*"
 dj-rest-auth = {extras = ["with_social"], version = "*"}
+"discord.py" = "*"
 
 [dev-packages]
 
