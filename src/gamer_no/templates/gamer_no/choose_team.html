@@ -1,0 +1,79 @@
+
+
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    </head>
+    <body>
+        
+
+        <h1>
+            Team Chooser
+        </h1>
+        
+        <hr>
+        
+        {% if not hub %}
+        <h2>Choose Hub</h2>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                {% comment %} <th>Url</th> {% endcomment %}
+                {% comment %} <th>Relative Url</th> {% endcomment %}
+                <th>Logo</th>
+                {% comment %} <th>Poster</th> {% endcomment %}
+                <th>Slogan</th>
+                {% comment %} <th>Deactivated_at</th> {% endcomment %}
+                {% comment %} <th>Primary Color</th> {% endcomment %}
+                {% comment %} <th>Competition Count</th> {% endcomment %}
+                <th>Member Count</th>
+                {% comment %} <th>Blog Posts</th> {% endcomment %}
+            </tr>
+            {% for hub in hubs.data %}
+            {% if hub.deactivated_at is not None %}
+            {% else %}
+            <tr style="
+                    border-left-style: solid; 
+                    border-left-width: 25px; 
+                    border-left-color: {{ hub.primary_color }}; 
+                    {% comment %} background-image:url({{ hub.poster.url}});  {% endcomment %}
+                    background-size: cover; 
+                    background-attachment: fixed;"
+                    >
+                <td>{{ hub.id }}</td>
+                <td>{{ hub.title }}</td>
+                {% comment %} <td>{{ hub.url }}</td> {% endcomment %}
+                {% comment %} <td>{{ hub.relative_url }}</td> {% endcomment %}
+                <td style="width: 50px">
+                    <img class="img-responsive" src="{{ hub.logo.url }}" alt="{{ hub.logo.credits}}">
+                </td>
+                {% comment %} <td style="width: 100px">
+                    <img class="img-responsive" src="{{ hub.poster.url }}" alt="{{ hub.poster.credits}}">
+                </td> {% endcomment %}
+                <td>{{ hub.slogan }}</td>
+                {% comment %} <td>{{ hub.deactivated_at }}</td> {% endcomment %}
+                {% comment %} <td>{{ hub.primary_color }}</td> {% endcomment %}
+                {% comment %} <td>{{ hub.competition_count }}</td> {% endcomment %}
+                <td>{{ hub.member_count }}</td>
+                {% comment %} <td>{{ hub.blog_posts }}</td> {% endcomment %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        
+        {% endif %}
+        
+        {% if hub %}
+        <h2>Chosen Hub</h2>
+        <p>{{ hub }}</p>
+        {% endif %}
+        
+        <hr>
+        
+        
+        </html>
+    </body>
